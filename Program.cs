@@ -8,9 +8,6 @@ namespace Automatas
         static void Main(string[] args)
         {
 
-            Recursos recursos = new Recursos();
-
-
             //se asginan todos los estados iniciales
             List<string> estados = new List<string>();
             
@@ -86,16 +83,16 @@ namespace Automatas
             transiciones_1.Add("q3");
 
             //
-            for (int i = 0; i < 55555; i++)
+            for (int i = 0; i < 555; i++)
             {
                 //buscar los estados nuevos
-                estados = recursos.BuscarEstadosNuevos(estados, transiciones_0);
-                estados = recursos.BuscarEstadosNuevos(estados, transiciones_1);
+                estados = Recursos.BuscarEstadosNuevos(estados, transiciones_0);
+                estados = Recursos.BuscarEstadosNuevos(estados, transiciones_1);
 
 
                 //asignar las nuevas transiciones
-                transiciones_0 = recursos.AsignarNuevasTransiciones(estados, transiciones_0);
-                transiciones_1 = recursos.AsignarNuevasTransiciones(estados, transiciones_1);
+                transiciones_0 = Recursos.AsignarNuevasTransiciones(estados, transiciones_0);
+                transiciones_1 = Recursos.AsignarNuevasTransiciones(estados, transiciones_1);
             }
 
             //imprimir el total de estados

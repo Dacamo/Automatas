@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Automatas
 {
-    public class Recursos
+    public static class Recursos
     {
         //busca los estados nuevos en las transiciones y los agrega a la lista de estados
-        public List<string> BuscarEstadosNuevos(List<string> estados, List<string> transiciones) {
+        public static List<string> BuscarEstadosNuevos(List<string> estados, List<string> transiciones)
+        {
 
-            
             foreach (var transicion in transiciones)
             {
                 if (transicion != "{}" && !estados.Contains(transicion))
@@ -23,12 +23,11 @@ namespace Automatas
         }
 
         //a los estados nuevos se les asigna las nuevas transiciones 
-        public List<string> AsignarNuevasTransiciones(List<string> estados, List<string> transiciones) {
+        public static List<string> AsignarNuevasTransiciones(List<string> estados, List<string> transiciones)
+        {
 
-
-            int valoresRestantes = estados.Count - transiciones.Count;
-            
-            for (int i = 0; i < valoresRestantes; i++)
+            for (int valoresRestantes = estados.Count -
+                transiciones.Count; valoresRestantes > 0; --valoresRestantes)
             {
                 int index = transiciones.Count;
                 string estado = estados[index];
@@ -43,9 +42,8 @@ namespace Automatas
                     {
                         cadena = cadena + "," + valor;
                     }
-
                 }
-                
+            
                 if (cadena == null) {
                     cadena = "{}";
                 }
@@ -54,7 +52,9 @@ namespace Automatas
                 {
                     cadena = cadena.TrimStart(',');
                 }
-                cadena = organizarCadena(cadena);
+                
+
+                cadena = Organizar(cadena);
                 transiciones.Add(cadena);
                 
             }
@@ -64,22 +64,8 @@ namespace Automatas
 
         // se eliminan los elementos repetidos de una cadena
         // ejemplo la cadena "q1,q2,q2,q3,q3,q5" la retorna asi: "q1,q2,q3,q5"
-        public string organizarCadena(string cadena) {
-            string[] split = cadena.Split(new char[] { ',' });
-            List<string> cadenaNueva = new List<string>();
-            foreach (var item in split)
-            {
-                cadenaNueva.Add(item);
-            }
-
-            string cadenaRetorno = null;
-            foreach (var item in cadenaNueva.Distinct())
-            {
-                cadenaRetorno = cadenaRetorno + "," + item;
-            }
-
-            cadenaRetorno = cadenaRetorno.TrimStart(',');
-            return cadenaRetorno;
-        }
+        public static string Organizar(string cadena) => string.Join(
+        ",", cadena.Split(',').Distinct()
+    );
     }
 }
