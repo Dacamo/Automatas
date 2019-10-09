@@ -12,10 +12,11 @@ namespace Automatas
         {
 
             foreach (var transicion in transiciones)
-            {
-                if (transicion != "{}" && !estados.Contains(transicion))
+            {   
+                string transicionOrdenada = Ordenarcadena(transicion);
+                if (transicionOrdenada != "{}" && !estados.Contains(transicionOrdenada))
                 {
-                    estados.Add(transicion);
+                    estados.Add(transicionOrdenada);
                 }
             }
 
@@ -65,7 +66,54 @@ namespace Automatas
         // se eliminan los elementos repetidos de una cadena
         // ejemplo la cadena "q1,q2,q2,q3,q3,q5" la retorna asi: "q1,q2,q3,q5"
         public static string Organizar(string cadena) => string.Join(
-        ",", cadena.Split(',').Distinct()
-    );
+        ",", cadena.Split(',').Distinct());
+
+
+        //Refactorizar
+        public static List<List<string>> EliminarEstadosSinUso(List<string> estados, List<string> transiciones_0, List<string> transiciones_1)
+        {
+            List<string> estadosOrganizados = new List<string>();
+            List<string> transiciones_0_Organizadas = new List<string>();
+            List<string> transiciones_1_Organizadas = new List<string>();
+            List<List<string>> elementos = new List<List<string>>();
+
+            //estado inicial
+            estadosOrganizados.Add(estados[0]);
+            transiciones_0_Organizadas.Add(transiciones_0[0]);
+            transiciones_1_Organizadas.Add(transiciones_1[0]);
+
+            //se recorren los demás estados
+            for (int i = 1; i < estados.Count; i++)
+            {
+                if (transiciones_0.Contains(estados[i]) || transiciones_1.Contains(estados[i]))
+                {
+                    estadosOrganizados.Add(estados[i]);
+                    transiciones_0_Organizadas.Add(transiciones_0[i]);
+                    transiciones_1_Organizadas.Add(transiciones_1[i]);
+                }
+            }
+            elementos.Add(estadosOrganizados);
+            elementos.Add(transiciones_0_Organizadas);
+            elementos.Add(transiciones_1_Organizadas);
+
+
+            return elementos;
+        }
+
+        public static string Ordenarcadena(string cadena)
+        {
+            string[] split = cadena.Split(',').OrderBy(e => e).ToArray();
+
+            string cadenaFinal = null;
+            foreach (var item in split)
+            {
+                cadenaFinal = cadenaFinal + "," + item;
+            }
+
+            cadenaFinal = cadenaFinal.TrimStart(',');
+            return cadenaFinal;
+        }
+
+
     }
 }

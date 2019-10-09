@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Automatas
 {
@@ -7,7 +8,7 @@ namespace Automatas
     {
         static void Main(string[] args)
         {
-
+            
             //se asginan todos los estados iniciales
             List<string> estados = new List<string>();
             
@@ -31,8 +32,8 @@ namespace Automatas
 
             //se asignan todas las transiciones para 0
             List<string> transiciones_0 = new List<string>();
-            /*
-            transiciones_0.Add("q1");
+            
+           /* transiciones_0.Add("q1");
             transiciones_0.Add("q2");
             transiciones_0.Add("q3");
             transiciones_0.Add("q4");
@@ -57,14 +58,14 @@ namespace Automatas
 
             //se asignan todas las transiciones para 1
             List<string> transiciones_1 = new List<string>();
-            /*
-            transiciones_1.Add("{}");
+            
+            /*transiciones_1.Add("{}");
             transiciones_1.Add("q1,q2");
             transiciones_1.Add("q2,q3");
             transiciones_1.Add("q3,q4");
             transiciones_1.Add("q4,q5");
-            transiciones_1.Add("{}");*/
-
+            transiciones_1.Add("{}");
+            */
 
             transiciones_1.Add("q1,q4");
             transiciones_1.Add("q2");
@@ -95,22 +96,37 @@ namespace Automatas
                 transiciones_1 = Recursos.AsignarNuevasTransiciones(estados, transiciones_1);
             }
 
-            //imprimir el total de estados
-             Console.WriteLine("el numero total de estados:" + " " + estados.Count);
+            //imprimir el total de estados sin organizar
+             Console.WriteLine("el numero total de estados sin organizar:" + " " + estados.Count);
 
 
-            //imprimir los estados, con sus transiciones (organizar)
-            /*for (int i = 0; i < estados.Count; i++)
-            {
-                Console.WriteLine(estados[i]+"                 " + transiciones_0[0] + "              " + transiciones_1[i]);
-               
-            }*/
-
-            //imprimir todos los estados
             foreach (var item in estados)
             {
                 Console.WriteLine(item);
             }
+
+
+            //se eliminan los estados sin uso
+            var elementos = Recursos.EliminarEstadosSinUso(estados, transiciones_0, transiciones_1);
+
+            estados = elementos[0];
+            transiciones_0 = elementos[1];
+            transiciones_1 = elementos[2];
+
+
+            Console.WriteLine("el numero total de estados organizados:" + " " + estados.Count);
+
+
+            //imprimir todos los estados organizados
+
+            foreach (var item in estados)
+            {
+                Console.WriteLine(item);
+            }
+
+
+
+            
 
 
 
