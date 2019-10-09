@@ -53,8 +53,8 @@ namespace Automatas
                 {
                     cadena = cadena.TrimStart(',');
                 }
-                
 
+                cadena = Ordenarcadena(cadena);
                 cadena = Organizar(cadena);
                 transiciones.Add(cadena);
                 
