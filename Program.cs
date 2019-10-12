@@ -90,7 +90,6 @@ namespace Automatas
                 estados = Recursos.BuscarEstadosNuevos(estados, transiciones_0);
                 estados = Recursos.BuscarEstadosNuevos(estados, transiciones_1);
 
-
                 //asignar las nuevas transiciones
                 transiciones_0 = Recursos.AsignarNuevasTransiciones(estados, transiciones_0);
                 transiciones_1 = Recursos.AsignarNuevasTransiciones(estados, transiciones_1);
@@ -99,51 +98,10 @@ namespace Automatas
             //imprimir el total de estados sin organizar
              Console.WriteLine("el numero total de estados sin organizar:" + " " + estados.Count);
 
-
             foreach (var item in estados)
             {
                 Console.WriteLine(item);
             }
-
-
-            //se eliminan los estados sin uso
-            var elementos = Recursos.EliminarEstadosSinUso(estados, transiciones_0, transiciones_1);
-
-            estados = elementos[0];
-            transiciones_0 = elementos[1];
-            transiciones_1 = elementos[2];
-
-
-            Console.WriteLine("el numero total de estados organizados:" + " " + estados.Count);
-
-
-            //imprimir todos los estados organizados
-
-            foreach (var item in estados)
-            {
-                Console.WriteLine(item);
-            }
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
     }
 }
