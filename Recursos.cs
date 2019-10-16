@@ -82,7 +82,7 @@ namespace Automatas
             return cadenaFinal;
         }
 
-        public static List<List<string>> EliminarEstadosSinUso(List<string> estados, List<string> transiciones_0, List<string> transiciones_1)
+        /*public static List<List<string>> EliminarEstadosSinUso(List<string> estados, List<string> transiciones_0, List<string> transiciones_1)
         {
             List<string> estadosOrganizados = new List<string>();
             List<string> transiciones_0_Organizadas = new List<string>();
@@ -110,10 +110,32 @@ namespace Automatas
             elementos.Add(transiciones_1_Organizadas);
 
             return elementos;
+        }*/
+
+        public static List<int> BuscarEstadosSinUso(List<List<string>> elementos) {
+
+            List<int> indices = new List<int>();
+
+            for (int x = 1; x < elementos[0].Count; x++)
+            {
+                bool eliminar = true;
+                for (int i = 1; i < elementos.Count; i++)
+                {
+                    
+                    string transicion = elementos[i][x];
+                    if (elementos[i][x].Length > 3)
+                    {
+                        eliminar = false;
+                    }
+                }
+
+                if (eliminar) {
+                    indices.Add(x);
+                }
+                
+            }
+            return indices;
         }
-
-        
-
 
     }
 }
