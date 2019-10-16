@@ -28,7 +28,10 @@ namespace Automatas
             estados.Add("q11");
             estados.Add("q12");
             estados.Add("q13");
-            
+
+           
+
+
 
             //se asignan todas las transiciones para 0
             List<string> transiciones_0 = new List<string>();
@@ -40,17 +43,17 @@ namespace Automatas
             transiciones_0.Add("{}");
             transiciones_0.Add("{}");*/
 
+            transiciones_0.Add("q6");
+            transiciones_0.Add("{}");
+            transiciones_0.Add("{}");
             transiciones_0.Add("q4");
+            transiciones_0.Add("q5");
+            transiciones_0.Add("q3");
+            transiciones_0.Add("q10");
             transiciones_0.Add("{}");
             transiciones_0.Add("{}");
-            transiciones_0.Add("q9");
             transiciones_0.Add("q5");
             transiciones_0.Add("q0");
-            transiciones_0.Add("{}");
-            transiciones_0.Add("{}");
-            transiciones_0.Add("q10");
-            transiciones_0.Add("q10");
-            transiciones_0.Add("q3");
             transiciones_0.Add("{}");
             transiciones_0.Add("{}");
             transiciones_0.Add("q3");
@@ -67,18 +70,18 @@ namespace Automatas
             transiciones_1.Add("{}");
             */
 
-            transiciones_1.Add("q1,q4");
+            transiciones_1.Add("q1,q6");
             transiciones_1.Add("q2");
             transiciones_1.Add("q3");
-            transiciones_1.Add("q9");
-            transiciones_1.Add("q5,q6");
+            transiciones_1.Add("q4");
+            transiciones_1.Add("q5");
 
-            transiciones_1.Add("q0,q11");
-            transiciones_1.Add("q7");
-            transiciones_1.Add("q8");
-            transiciones_1.Add("q10");
-            transiciones_1.Add("q10");
             transiciones_1.Add("q3");
+            transiciones_1.Add("q7,q10");
+            transiciones_1.Add("q8");
+            transiciones_1.Add("q9");
+            transiciones_1.Add("q5");
+            transiciones_1.Add("q0,q11");
             transiciones_1.Add("q12");
             transiciones_1.Add("q13");
             transiciones_1.Add("q3");
@@ -96,12 +99,14 @@ namespace Automatas
             }
 
             //imprimir el total de estados sin organizar
-             Console.WriteLine("el numero total de estados sin organizar:" + " " + estados.Count);
+        
 
-            foreach (var item in estados)
+            var t = new TablePrinter("Numero", "Estados", "0", "1");
+            for (int i = 0; i < estados.Count; i++)
             {
-                Console.WriteLine(item);
+                t.AddRow(i, estados[i], transiciones_0[i], transiciones_1[i]);
             }
+            t.Print();
         }
     }
 }

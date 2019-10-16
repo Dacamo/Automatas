@@ -81,5 +81,14 @@ namespace Automatas
             cadenaFinal = cadenaFinal.TrimStart(',');
             return cadenaFinal;
         }
+
+        public static List<string> EliminarEstadosSinUso(List<string> estados, List<string> transiciones_0, List<string> transiciones_1)
+        {
+            return null;
+        }
+
+        
+
+
     }
 }
