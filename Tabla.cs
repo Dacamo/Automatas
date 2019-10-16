@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace Automatas
 {
-    public class TablePrinter
+    public class Tabla
     {
         private readonly string[] titles;
         private readonly List<int> lengths;
         private readonly List<string[]> rows = new List<string[]>();
 
-        public TablePrinter(params string[] titles)
+        public Tabla(params string[] titles)
         {
             this.titles = titles;
             lengths = titles.Select(t => t.Length).ToList();

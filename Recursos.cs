@@ -82,9 +82,34 @@ namespace Automatas
             return cadenaFinal;
         }
 
-        public static List<string> EliminarEstadosSinUso(List<string> estados, List<string> transiciones_0, List<string> transiciones_1)
+        public static List<List<string>> EliminarEstadosSinUso(List<string> estados, List<string> transiciones_0, List<string> transiciones_1)
         {
-            return null;
+            List<string> estadosOrganizados = new List<string>();
+            List<string> transiciones_0_Organizadas = new List<string>();
+            List<string> transiciones_1_Organizadas = new List<string>();
+            List<List<string>> elementos = new List<List<string>>();
+
+            //se añade el estado inicial y sus transiciones
+            estadosOrganizados.Add(estados[0]);
+            transiciones_0_Organizadas.Add(transiciones_0[0]);
+            transiciones_1_Organizadas.Add(transiciones_1[0]);
+
+
+            for (int i = 1; i < estados.Count; i++)
+            {
+                //si en las transiciones los estados no son nuevos entonces se borran,para ellos se determina contando el string.
+                if (transiciones_0[i].Length > 3 || transiciones_1[i].Length > 3) {
+                    estadosOrganizados.Add(estados[i]);
+                    transiciones_0_Organizadas.Add(transiciones_0[i]);
+                    transiciones_1_Organizadas.Add(transiciones_1[i]);
+                }
+            }
+
+            elementos.Add(estadosOrganizados);
+            elementos.Add(transiciones_0_Organizadas);
+            elementos.Add(transiciones_1_Organizadas);
+
+            return elementos;
         }
 
         

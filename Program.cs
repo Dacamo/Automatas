@@ -30,9 +30,6 @@ namespace Automatas
             estados.Add("q13");
 
            
-
-
-
             //se asignan todas las transiciones para 0
             List<string> transiciones_0 = new List<string>();
             
@@ -98,10 +95,15 @@ namespace Automatas
                 transiciones_1 = Recursos.AsignarNuevasTransiciones(estados, transiciones_1);
             }
 
-            //imprimir el total de estados sin organizar
+            List<List<string>> elementos = Recursos.EliminarEstadosSinUso(estados, transiciones_0, transiciones_1);
+
+            estados = elementos[0];
+            transiciones_0 = elementos[1];
+            transiciones_1 = elementos[2];
+
         
 
-            var t = new TablePrinter("Numero", "Estados", "0", "1");
+            var t = new Tabla("Numero", "Estados", "0", "1");
             for (int i = 0; i < estados.Count; i++)
             {
                 t.AddRow(i, estados[i], transiciones_0[i], transiciones_1[i]);
